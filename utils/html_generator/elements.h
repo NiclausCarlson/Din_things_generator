@@ -3,6 +3,7 @@
 #include <sstream>
 #include <optional>
 #include <tuple>
+#include <vector>
 
 namespace html_generator {
     struct Element {
@@ -30,7 +31,6 @@ namespace html_generator {
             return result;
         }
     };
-
 
     template<typename ...T>
     struct Div : public Element {
@@ -67,6 +67,22 @@ namespace html_generator {
         const int32_t idx;
 
         Header(std::string &&txt, int32_t &&idx);
+
+        [[nodiscard]] std::string gen() const override;
+    };
+
+    struct Table : public Element {
+        using TowTyper = std::vector<std::string>;
+        using TableType = std::vector<TowTyper>;
+        const TableType table;
+        const TowTyper row_headers;
+        const TowTyper column_headers;
+
+        explicit Table(const TableType &table, const TowTyper &row_headers,
+                       const TowTyper &column_headers);
+
+        explicit Table(TableType &&table, TowTyper &&row_headers,
+                       TowTyper &&column_headers);
 
         [[nodiscard]] std::string gen() const override;
     };

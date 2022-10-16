@@ -3,13 +3,10 @@
 
 int main() {
     using namespace html_generator;
-    Body<Header, Paragraf, Header, Div<Header, Paragraf>> body{
-            Header{"t", 1},
-            Paragraf{"F"},
-            Header{"ssf", 2},
-            Div<Header, Paragraf>{std::nullopt,
-                                  Header{"ssf", 2},
-                                  Paragraf{"F"}}
+    Body<Table> body{
+            Table{{{"a", "b", "c"}, {"d", "e", "f"}, {"g", "h", "i"}},
+                  {"A", "B", "C"},
+                  {"D", "F", "G"}}
     };
     std::cout << body.gen();
     return 0;
