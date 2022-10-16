@@ -1,5 +1,6 @@
 #include <iostream>
 #include "utils/html_generator/elements.h"
+#include "utils/io/io.h"
 
 int main() {
     using namespace html_generator;
@@ -8,6 +9,6 @@ int main() {
                   {"A", "B", "C"},
                   {"D", "F", "G"}}
     };
-    std::cout << body.gen();
+    io::write_to_file(&body);
     return 0;
 }
